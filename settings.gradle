@@ -1,0 +1,2 @@
+rootProject.name='DAZN Code Challenge'
+include ':app'

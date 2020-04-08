@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">DAZN Code Challenge</string>
+    <string name="date_format_yesterday">Yesterday, %s</string>
+    <string name="date_format_today">Today, %s</string>
+    <string name="date_format_tomorrow">Tomorrow, %s</string>
+    <string name="date_format_in_two_days">In two days</string>
+    <string name="date_format_in_three_days">In three days</string>
+</resources>

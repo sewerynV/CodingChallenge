@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools">
+    
+    <ImageView
+        android:id="@+id/event_thumbnail"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"/>
+
+    <TextView
+        android:id="@+id/event_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/event_thumbnail"
+        android:textSize="15sp"
+        tools:text="Manchester vs Juventus"/>
+    <TextView
+        android:id="@+id/event_subtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/event_title"
+        android:layout_toEndOf="@id/event_thumbnail"
+        android:textSize="12sp"
+        tools:text="Champions League"/>
+
+    <TextView
+        android:id="@+id/event_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/event_thumbnail"
+        android:layout_alignBottom="@id/event_thumbnail"
+        android:textSize="10sp"
+        tools:text="Yesterday, 10:30"/>
+
+</RelativeLayout>
