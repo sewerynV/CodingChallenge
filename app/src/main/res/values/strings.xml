@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">DAZN Code Challenge</string>
+    <string name="app_name">Code Challenge</string>
     <string name="date_format_yesterday">Yesterday, %s</string>
     <string name="date_format_today">Today, %s</string>
     <string name="date_format_tomorrow">Tomorrow, %s</string>

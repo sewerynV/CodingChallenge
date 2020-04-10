@@ -8,7 +8,7 @@ android {
 
 
     defaultConfig {
-        applicationId "com.seweryn.dazncodechallenge"
+        applicationId "com.seweryn.codechallenge"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
