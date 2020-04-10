@@ -1,7 +1,6 @@
 package com.seweryn.dazncodechallenge.di
 
 import android.app.Application
-import android.content.Context
 import androidx.room.Room
 import com.seweryn.dazncodechallenge.data.DaznRepository
 import com.seweryn.dazncodechallenge.data.DaznRepositoryImpl
@@ -21,7 +20,8 @@ class ApplicationModule(private val application: Application) {
     fun provideStringProvider(): StringProvider = StringProviderImpl(application.resources)
 
     @Provides
-    fun provideDateFormatter(stringProvider: StringProvider): DateFormatter = DateFormatterImpl(stringProvider)
+    fun provideDateFormatter(stringProvider: StringProvider): DateFormatter =
+        DateFormatterImpl(stringProvider)
 
     @Provides
     fun provideConnectionManager(): ConnectionManager = ConnectionManagerImpl(application)
@@ -30,12 +30,15 @@ class ApplicationModule(private val application: Application) {
     fun provideSchedulersProvider(): SchedulersProvider = SchedulerProviderImpl()
 
     @Provides
-    fun provideDaznRepository(daznApi: DaznApi, database: Database): DaznRepository = DaznRepositoryImpl(daznApi, database)
+    fun provideDaznRepository(daznApi: DaznApi, database: Database): DaznRepository =
+        DaznRepositoryImpl(daznApi, database)
 
     @Provides
     @Singleton
-    fun provideDaznDatabase(): Database = Room.databaseBuilder(application,
-        Database::class.java, Constants.DAZN_DATABASE_NAME)
+    fun provideDaznDatabase(): Database = Room.databaseBuilder(
+        application,
+        Database::class.java, Constants.DAZN_DATABASE_NAME
+    )
         .fallbackToDestructiveMigration()
         .build()
 }
