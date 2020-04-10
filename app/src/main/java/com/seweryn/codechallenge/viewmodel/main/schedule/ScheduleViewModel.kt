@@ -26,16 +26,16 @@ class ScheduleViewModel(
     }
 
     private fun loadSchedule() {
-        if(content.value.isNullOrEmpty()) contentLoadingProgress.postValue(true)
+        toggleProgress(true)
         poll(
             command = eventsRepository.getSchedule(),
             intervalInSeconds = 30,
             onNext = { response ->
-                contentLoadingProgress.value = false
+                toggleProgress(false)
                 content.value = createContent(response)
             },
             onError = { error ->
-                contentLoadingProgress.value = false
+                toggleProgress(false)
                 parseError(error)
             },
             onComplete = { }
@@ -51,5 +51,9 @@ class ScheduleViewModel(
                 imageUrl = event.imageUrl
             )
         }
+    }
+
+    private fun toggleProgress(isInProgress: Boolean) {
+        if(content.value.isNullOrEmpty()) contentLoadingProgress.postValue(isInProgress)
     }
 }
