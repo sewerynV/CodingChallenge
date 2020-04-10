@@ -27,6 +27,7 @@ class ScheduleViewModel(
 
     private fun loadSchedule() {
         toggleProgress(true)
+        contentError.value = null
         poll(
             command = eventsRepository.getSchedule(),
             intervalInSeconds = 30,

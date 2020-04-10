@@ -10,7 +10,7 @@ import org.threeten.bp.LocalDateTime
 abstract class MainViewModel(private val dateFormatter: DateFormatter, schedulersProvider: SchedulersProvider) : BaseViewModel(schedulersProvider) {
 
     var contentLoadingProgress: MutableLiveData<Boolean> = MutableLiveData()
-    var contentError: MutableLiveData<Error> = MutableLiveData()
+    var contentError: MutableLiveData<Error?> = MutableLiveData()
     var content: MutableLiveData<List<ContentItem>> = MutableLiveData()
     var action: MutableLiveData<Action?> = MutableLiveData()
 

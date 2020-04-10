@@ -69,11 +69,16 @@ abstract class MainListFragment<T: MainViewModel> : BaseFragment<T>() {
     private fun observeErrors() {
         viewModel.contentError.observe(viewLifecycleOwner,
             Observer { error ->
-                error_container.show()
-                error_retry_button.setOnClickListener { error.retryAction.invoke() }
-                when(error) {
-                    is MainViewModel.Error.NoInternetError -> error_message.text = resources.getString(R.string.error_message_no_internet)
-                    else -> error_message.text = resources.getString(R.string.error_message_generic)
+                if(error == null) {
+                    error_container.hide()
+                } else {
+                    error_container.show()
+                    error_retry_button.setOnClickListener { error.retryAction.invoke() }
+                    when(error) {
+                        is MainViewModel.Error.NoInternetError -> error_message.text = resources.getString(R.string.error_message_no_internet)
+                        else -> error_message.text = resources.getString(R.string.error_message_generic)
+                    }
+
                 }
 
             })
