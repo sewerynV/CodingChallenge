@@ -41,6 +41,7 @@ class MainListRecyclerAdapter : RecyclerView.Adapter<MainListRecyclerAdapter.Vie
                 content_divider.showConditionally(!isLastPosition)
                 Picasso.get()
                     .load(contentItem.imageUrl)
+                    .error(context.getDrawable(R.drawable.error_thumbnail_placeholder))
                     .into(content_thumbnail)
                 setOnClickListener { contentItem.selectAction.invoke() }
             }
