@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.seweryn.dazncodechallenge.data.DaznRepository
 import com.seweryn.dazncodechallenge.utils.DateFormatter
+import com.seweryn.dazncodechallenge.utils.SchedulersProvider
 import com.seweryn.dazncodechallenge.viewmodel.main.events.EventsViewModel
 import com.seweryn.dazncodechallenge.viewmodel.main.schedule.ScheduleViewModel
 import dagger.MapKey
@@ -25,20 +26,22 @@ class ViewModelModule {
     @Provides
     @IntoMap
     @ViewModelKey(EventsViewModel::class)
-    fun provideEventsViewModel(daznRepository: DaznRepository, dateFormatter: DateFormatter): ViewModel {
+    fun provideEventsViewModel(daznRepository: DaznRepository, dateFormatter: DateFormatter, schedulersProvider: SchedulersProvider): ViewModel {
         return EventsViewModel(
             daznRepository,
-            dateFormatter
+            dateFormatter,
+            schedulersProvider
         )
     }
 
     @Provides
     @IntoMap
     @ViewModelKey(ScheduleViewModel::class)
-    fun provideScheduleViewModel(daznRepository: DaznRepository, dateFormatter: DateFormatter): ViewModel {
+    fun provideScheduleViewModel(daznRepository: DaznRepository, dateFormatter: DateFormatter, schedulersProvider: SchedulersProvider): ViewModel {
         return ScheduleViewModel(
             daznRepository,
-            dateFormatter
+            dateFormatter,
+            schedulersProvider
         )
     }
 

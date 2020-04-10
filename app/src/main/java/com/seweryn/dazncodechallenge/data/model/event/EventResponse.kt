@@ -1,9 +1,14 @@
 package com.seweryn.dazncodechallenge.data.model.event
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity
 data class EventResponse(
-    val id: String,
-    val title: String,
-    val subtitle: String,
-    val date: String,
-    val imageUrl: String,
-    val videoUrl: String)
+    @PrimaryKey val id: String,
+    @ColumnInfo(name = "title") val title: String,
+    @ColumnInfo(name = "subtitle") val subtitle: String,
+    @ColumnInfo(name = "date") val date: String,
+    @ColumnInfo(name = "imageUrl") val imageUrl: String,
+    @ColumnInfo(name = "videourl")  val videoUrl: String)

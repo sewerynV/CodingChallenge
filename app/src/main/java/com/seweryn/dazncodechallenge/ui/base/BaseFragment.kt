@@ -2,7 +2,6 @@ package com.seweryn.dazncodechallenge.ui.base
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.seweryn.dazncodechallenge.viewmodel.BaseViewModel
 import dagger.android.support.AndroidSupportInjection

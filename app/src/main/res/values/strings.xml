@@ -5,4 +5,12 @@
     <string name="date_format_tomorrow">Tomorrow, %s</string>
     <string name="date_format_in_two_days">In two days</string>
     <string name="date_format_in_three_days">In three days</string>
+
+    <string name="bottom_navigation_menu_events">Events</string>
+    <string name="bottom_navigation_menu_schedule">Schedule</string>
+
+    <string name="action_retry">Retry</string>
+
+    <string name="error_message_no_internet">No internet connection. Check your network settings and try again.</string>
+    <string name="error_message_generic">Something went wrong. Please try again.</string>
 </resources>

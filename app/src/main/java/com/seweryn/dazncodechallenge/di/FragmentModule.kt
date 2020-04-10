@@ -1,7 +1,7 @@
 package com.seweryn.dazncodechallenge.di
 
-import com.seweryn.dazncodechallenge.ui.main.events.EventsFragment
-import com.seweryn.dazncodechallenge.ui.main.schedule.ScheduleFragment
+import com.seweryn.dazncodechallenge.ui.main.fragments.events.EventsFragment
+import com.seweryn.dazncodechallenge.ui.main.fragments.schedule.ScheduleFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

@@ -1,6 +1,9 @@
 package com.seweryn.dazncodechallenge.di
 
 import com.seweryn.dazncodechallenge.data.remote.DaznApi
+import com.seweryn.dazncodechallenge.tools.network.NetworkConnectionInterceptor
+import com.seweryn.dazncodechallenge.utils.Constants
+import com.seweryn.dazncodechallenge.utils.network.ConnectionManager
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
@@ -14,12 +17,17 @@ import javax.inject.Named
 class NetworkModule {
 
     @Provides
-    fun provideOkHttpClient(): OkHttpClient = OkHttpClient.Builder().build()
+    fun provideOkHttpClient(connectionManager: ConnectionManager): OkHttpClient = OkHttpClient.Builder()
+        .addInterceptor(NetworkConnectionInterceptor(connectionManager))
+        .build()
 
     @Provides
     @Named("dazn")
     fun provideDAZNApiClient(okHttpClient: OkHttpClient): Retrofit {
-        return buildRetrofitClient(okHttpClient, "https://us-central1-dazn-sandbox.cloudfunctions.net")
+        return buildRetrofitClient(
+            okHttpClient,
+            Constants.DAZN_BASE_URL
+        )
     }
 
     @Provides

@@ -1,25 +1,26 @@
 package com.seweryn.dazncodechallenge.viewmodel.main
 
 import androidx.lifecycle.MutableLiveData
-import com.seweryn.dazncodechallenge.R
-import com.seweryn.dazncodechallenge.utils.DateDifferenceUtil
+import com.seweryn.dazncodechallenge.tools.network.error.ConnectionError
 import com.seweryn.dazncodechallenge.utils.DateFormatter
-import com.seweryn.dazncodechallenge.utils.StringProvider
+import com.seweryn.dazncodechallenge.utils.SchedulersProvider
 import com.seweryn.dazncodechallenge.viewmodel.BaseViewModel
 import org.threeten.bp.LocalDateTime
-import org.threeten.bp.format.DateTimeFormatter
 
-abstract class MainViewModel(private val dateFormatter: DateFormatter) : BaseViewModel() {
+abstract class MainViewModel(private val dateFormatter: DateFormatter, schedulersProvider: SchedulersProvider) : BaseViewModel(schedulersProvider) {
 
-    var eventsLoadingProgress: MutableLiveData<Boolean> = MutableLiveData()
-    var eventsError: MutableLiveData<String?> = MutableLiveData()
-    var content: MutableLiveData<List<Content>> = MutableLiveData()
+    var contentLoadingProgress: MutableLiveData<Boolean> = MutableLiveData()
+    var contentError: MutableLiveData<Error> = MutableLiveData()
+    var content: MutableLiveData<List<ContentItem>> = MutableLiveData()
     var action: MutableLiveData<Action?> = MutableLiveData()
 
-    abstract fun start()
+    abstract fun retry()
 
     protected fun parseError(error: Throwable) {
-
+        contentError.value = when(error) {
+            is ConnectionError -> Error.NoInternetError{ retry() }
+            else -> Error.GenericError{ retry() }
+        }
     }
 
     protected fun formatDate(date: LocalDateTime): String = dateFormatter.formatDateForDisplay(date)
@@ -28,12 +29,17 @@ abstract class MainViewModel(private val dateFormatter: DateFormatter) : BaseVie
         sendSingleEvent(action, actionToPerform)
     }
 
-    data class Content(
+    data class ContentItem(
         val title: String,
         val subtitle: String,
         val date: String,
         val imageUrl: String,
         val selectAction: () -> Unit = {})
+
+    sealed class Error(val retryAction: () -> Unit){
+        class GenericError(retryAction: () -> Unit) : Error(retryAction)
+        class NoInternetError(retryAction: () -> Unit) : Error(retryAction)
+    }
 
     sealed class Action{
         class PlayVideo(val url: String): Action()

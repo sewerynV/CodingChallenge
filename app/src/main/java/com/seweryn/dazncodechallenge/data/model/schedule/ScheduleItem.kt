@@ -2,7 +2,7 @@ package com.seweryn.dazncodechallenge.data.model.schedule
 
 import org.threeten.bp.LocalDateTime
 
-data class Schedule(
+data class ScheduleItem(
     val id: String,
     val title: String,
     val subtitle: String,
